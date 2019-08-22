@@ -1,7 +1,7 @@
 package org.pg4200.sol03;
 
 
-import org.testng.annotations.Test;
+import org.junit.jupiter.api.Test;
 import org.pg4200.ex03.GameUser;
 
 import java.util.Comparator;

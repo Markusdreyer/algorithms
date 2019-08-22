@@ -2,6 +2,8 @@ package org.pg4200.sol02;
 
 import org.pg4200.les02.list.MyArrayList;
 
+import java.util.Arrays;
+
 /**
  * Created by arcuri82 on 15-Aug-17.
  */
@@ -40,5 +42,6 @@ public class MyArrayListResizable<T> extends MyArrayList<T> {
             in the parent/super class.
          */
         super.add(index, value);
+        System.out.println(Arrays.deepToString(data));
     }
 }
