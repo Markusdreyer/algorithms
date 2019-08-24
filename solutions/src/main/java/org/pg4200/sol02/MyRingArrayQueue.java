@@ -2,6 +2,8 @@ package org.pg4200.sol02;
 
 import org.pg4200.les02.queue.MyQueue;
 
+import java.util.Arrays;
+
 /**
  * Created by arcuri82 on 16-Aug-17.
  */
@@ -79,6 +81,7 @@ public class MyRingArrayQueue<T> implements MyQueue<T>{
         }
 
         data[tail] = value;
+        System.out.println(Arrays.deepToString(data));
     }
 
     @Override
