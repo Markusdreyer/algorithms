@@ -21,44 +21,58 @@ public class MyRingArrayQueue<T> implements MyQueue<T> {
 
     @Override
     public void enqueue(T value) {
+      if(isEmpty()) {
+          head = 0;
+          tail = 0;
+      } else if (head <= tail) { //normal case
+          if(tail < data.length - 1) {
+              //still empty spaces available
+              tail++;
+          } else {
+              if(head != 0) {
+                  //if head is no longer == 0, then a deque has been performed, and therefore it is space available to the left of head
+                  tail = 0;
+              } else {
+                  //no more spaces, so we create an array twice the size of the original
+                  Object[] tempArray = new Object[data.length * 2];
 
-        if(isEmpty()){
-            head = 0;
-            tail = 0;
-        } else {
-            if(head == tail) {
-                tail = data.length - size();
-            }
-            if(size() > data.length) {
-                Object[] tmp = new Object[data.length * 2];
+                  for(int i = 0; i < data.length; i++) {
+                      tempArray[i] = data[i];
+                  }
+                  tail = data.length; //or tail++
+                  data = tempArray;
+              }
+          }
+      } else {
+          //circle array
+          //head is no longer at 0, so there might be empty spaces before head
+          //tail should now be < head
 
-                int  size = size() - 1;
+          if(tail < head - 1) {
+              //means that there are empty spaces left before head
+              tail++;
+          } else {
+              //circle array is full and should be moved to larger array
+              Object[] tempArray = new Object[data.length * 2];
 
-                for(int i = 0; i < size; i++){
-                    if(head <= data.length) {
-                        tmp[i] = data[head];
-                        head++;
-                    }
-                    if(tail < head && head >= data.length) {
-                        tmp[i] = data[tail];
-                        tail++;
-                    }
-                }
-                head = 0;
-                tail = size() -1 ; //Value is not yet added to data array, so index of tail is not yet == to size()
-                data = tmp;
+              //loop to move all elements from head -> data.length
+              int k = data.length - head;
+              for(int i = 0; i < k; i++) {
+                  tempArray[i] = data[head + i];
+              }
 
-            }
-        }
+              //loop to move all remaining elements from tail -> head
+              for(int i = 0; i < head; i++) { //NB: MAYBE CHANGE  "i < head" to "i < (tail +1)"
+                  tempArray[k + i] = data[i];
+              }
 
-        data[tail] = value;
-        if(head < tail) {   //wtf?
-            head = 0;
-            tail = size();
-        } else {
-            tail++;
-        }
-        System.out.println(Arrays.deepToString(data));
+              head = 0;
+              tail = data.length; //since data.length still refers to old array, tail would now be == size of old array/data.length
+              data = tempArray;
+          }
+      }
+      data[tail] = value;
+
     }
 
     @Override
@@ -69,22 +83,21 @@ public class MyRingArrayQueue<T> implements MyQueue<T> {
         }
 
         T value = (T) data[head];
-
         data[head] = null; //to visualize the empty slots
 
+
         if(size() == 1){
-            //now it ll be empty
+            //now it'll be empty
             head = -1;
             tail = -1;
         } else {
-            if(tail + 1 == data.length) {
-                tail = head;
-            }
             head++;
+            if(head >= data.length){
+                head = 0;
+            }
         }
+        System.out.println(Arrays.deepToString(data));
 
-        System.out.println("Index of head: " + head);
-        System.out.println("Index of tail: " + tail);
         return value;
     }
 
@@ -100,23 +113,21 @@ public class MyRingArrayQueue<T> implements MyQueue<T> {
     @Override
     public int size() {
 
-        if(head < 0){
-            return 0;
-        }
+       if(head < 0) {
+           return 0;
+       } else if(head == tail) {
+           return 1;
+       } else if(head < tail) {
+           //normal case
+           return (tail - head) + 1;
+       } else {
+           //tail is left of head
+           int size = 0;
 
-        int availableIndexes;
-        int value;
+           size += data.length - head;
+           size += tail + 1;
 
-        if(tail < head) {
-            if(tail == 0) {
-                availableIndexes = head;
-            } else {
-                availableIndexes = head - tail + 1;
-            }
-            value = data.length - availableIndexes;
-            return value;
-        }
-
-        return (tail - head ) + 1;
+           return size;
+       }
     }
 }

@@ -15,7 +15,11 @@ public class Test {
         queue.dequeue();
         queue.enqueue(5);
         queue.enqueue(6);
-        queue.dequeue();    //TILL NEST TIME: Head is not at the right position after dequeue
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
+        queue.dequeue();
 
     }
 }

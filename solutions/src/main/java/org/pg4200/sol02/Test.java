@@ -1,7 +1,5 @@
 package org.pg4200.sol02;
 
-import java.util.Arrays;
-
 public class Test {
     private static MyArrayListResizable list = new MyArrayListResizable();
     private static MyRingArrayQueue queue = new MyRingArrayQueue(5);
@@ -17,7 +15,6 @@ public class Test {
         queue.enqueue(4);
         queue.dequeue();
         queue.enqueue(5);
-        queue.enqueue(6);
-
+        queue.enqueue(7);
     }
 }

@@ -28,7 +28,6 @@ public class MyRingArrayQueue<T> implements MyQueue<T>{
 
     @Override
     public void enqueue(T value) {
-
         if(isEmpty()){
             head = 0;
             tail = 0;
@@ -53,7 +52,7 @@ public class MyRingArrayQueue<T> implements MyQueue<T>{
                 }
             }
         } else {
-            assert tail < head;
+            //assert tail < head; removed, just clutter
 
             if(tail < head - 1){
                 // still space available
@@ -92,6 +91,8 @@ public class MyRingArrayQueue<T> implements MyQueue<T>{
         }
 
         T value = (T) data[head];
+        data[head] = null; //to visualize the empty slots
+
 
         if(size() == 1){
             //now it ll be empty
@@ -103,6 +104,7 @@ public class MyRingArrayQueue<T> implements MyQueue<T>{
                 head = 0;
             }
         }
+        System.out.println(Arrays.deepToString(data));
 
         return value;
     }
