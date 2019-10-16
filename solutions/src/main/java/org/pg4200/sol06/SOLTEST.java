@@ -1,13 +1,8 @@
-package org.pg4200.ex06;
+package org.pg4200.sol06;
 
-import org.pg4200.les06.hash.MyHashMapWithLists;
-
-import java.util.concurrent.TimeUnit;
-
-public class TEST {
-
+public class SOLTEST {
     public static void main(String[] args) {
-        MyHashMapWithLists hashMap = new MyHashMapWithLists();
+        HashMapLinearProbe hashMap = new HashMapLinearProbe();
 
         long putStartTime = System.nanoTime();
 

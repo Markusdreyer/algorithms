@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HashMapLinearProbe<K,V> implements MyHashMap {
-    private final int M = 997;
+    private final int M = 10_000_000;
     private int size = 0;
 
     private class Entry{
@@ -53,7 +53,7 @@ public class HashMapLinearProbe<K,V> implements MyHashMap {
     }
 
     private int index(Object key){
-        int positiveHash = key.hashCode() & 0x7f_ff_ff_ff;
+        int positiveHash = key.hashCode() & 0xfffffff;
         return positiveHash % M;
     }
 
@@ -90,7 +90,6 @@ public class HashMapLinearProbe<K,V> implements MyHashMap {
 
     @Override
     public int size() {
-
         return this.size;
     }
 }

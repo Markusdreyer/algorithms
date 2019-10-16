@@ -17,7 +17,7 @@ public class MyHashMapWithLists<K,V> implements MyHashMap<K,V> {
      * positive divisors other than 1 and itself"
      * https://en.wikipedia.org/wiki/Prime_number
      */
-    private final int M = 997;
+    private final int M = 10_000_000; //997
 
     private class Entry{
         K key;
@@ -86,7 +86,7 @@ public class MyHashMapWithLists<K,V> implements MyHashMap<K,V> {
             in hexadecimal (and decimal as well), the binary 0111 is
             a 7 (ie 2^2 + 2^1 + 2^0 = 4 + 2 + 1)
          */
-        int positiveHash = key.hashCode() & 0x7f_ff_ff_ff;
+        int positiveHash = key.hashCode() & 0x7f_ff_ff_ff; //or 0xfffffff;
 
         /*
             The result of %M is a value in 0..M-1

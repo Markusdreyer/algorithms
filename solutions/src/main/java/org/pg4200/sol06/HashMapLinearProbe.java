@@ -11,7 +11,7 @@ import java.lang.reflect.Array;
 public class HashMapLinearProbe<K, V> implements MyHashMap<K, V> {
 
 
-    private final int M = 997;
+    private final int M = 10_000_000; //Change back to 997
 
     private class Entry {
         K key;
