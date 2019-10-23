@@ -49,10 +49,10 @@ public class MergeSort implements MySort {
         }
 
         //index over the left half, before middle
-        int i = low;
+        int i = low; //before middle
 
         //index over the right half, after middle
-        int j = middle + 1;
+        int j = middle + 1;  //after middle
 
         for (int k = low; k <= high; k++) {
             if (i > middle) {
