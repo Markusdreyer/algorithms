@@ -4,6 +4,7 @@ import org.pg4200.les03.sort.MySort;
 
 public class MinMergeSort implements MySort {
 
+
     @Override
     public <T extends Comparable<T>> void sort(T[] array) {
         if (array == null) {
@@ -15,34 +16,37 @@ public class MinMergeSort implements MySort {
         mergesort(0, array.length - 1, array, buffer);
     }
 
-    private <T extends Comparable<T>> void mergesort(int low, int high, T[] array, T[] buffer) {
-        if(high <= low) {
+    public <T extends Comparable<T>> void mergesort(int low, int high, T[] array, T[] buffer) {
+        if(low >= high) {
             return;
         }
 
         int middle = low + (high - low) / 2;
+
         mergesort(low, middle, array, buffer);
-        mergesort(middle + 1, high, array, buffer);
+        mergesort(middle +1, high, array, buffer);
         merge(low, middle, high, array, buffer);
     }
 
-    private <T extends Comparable<T>> void merge(int low, int middle, int high, T[] array, T[] buffer) {
+    public<T extends Comparable<T>> void merge(int low, int middle, int high, T[] array, T[] buffer ) {
+        for(int i = low;  i <= high; i++) {
+            buffer[i] = array[i];
+        }
+
         int beforeMiddle = low;
         int afterMiddle = middle + 1;
 
-        for(int k = low; k <= high; k++) {
-            buffer[k] = array[k];
-        }
+        for(int i = low; i <= high; i++) {
+            if(beforeMiddle > middle){
 
-        for(int k = low; k <= high; k++) {
-            if(beforeMiddle > middle) {
-                array[k] = buffer[afterMiddle++];
-            } else if(afterMiddle > high) {
-                array[k] = buffer[beforeMiddle++];
+                array[i] = buffer[afterMiddle++];
+            } else if (afterMiddle > high) {
+
+                array[i] = buffer[beforeMiddle++];
             } else if(buffer[afterMiddle].compareTo(buffer[beforeMiddle]) < 0) {
-                array[k] = buffer[afterMiddle++];
+                array[i] = buffer[afterMiddle++];
             } else {
-                array[k] = buffer[beforeMiddle++];
+                array[i] = buffer[beforeMiddle++];
             }
         }
     }

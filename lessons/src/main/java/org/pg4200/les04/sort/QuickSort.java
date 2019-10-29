@@ -22,8 +22,8 @@ public class QuickSort implements MySort {
 
     private <T extends Comparable<T>> void quicksort(int low, int high, T[] array) {
 
-        int i = low;
-        int j = high;
+        int currentlLow = low;
+        int currentHigh = high;
 
         /*
             Choice of pivot is critical for the performance
@@ -32,31 +32,34 @@ public class QuickSort implements MySort {
          */
         T pivot = array[low + (high-low)/2];
 
-        while (i <= j) {
+        while (currentlLow <= currentHigh) {
 
-            while (array[i].compareTo(pivot) < 0) {
-                i++;
+            //Sjekker at alt fra low til pivot er sortert
+            while (array[currentlLow].compareTo(pivot) < 0) {
+                currentlLow++;
             }
 
-            while (array[j].compareTo(pivot) > 0) {
-                j--;
+            //Sjekker at alt fra high til pivot er sortert
+            while (array[currentHigh].compareTo(pivot) > 0) {
+                currentHigh--;
             }
 
-            if (i <= j) {
-                T tmp = array[i];
-                array[i] = array[j];
-                array[j] = tmp;
-                i++;
-                j--;
+            //Bytter plass på elementer som er usortert
+            if (currentlLow <= currentHigh) {
+                T tmp = array[currentlLow];
+                array[currentlLow] = array[currentHigh];
+                array[currentHigh] = tmp;
+                currentlLow++;
+                currentHigh--;
             }
         }
 
-        if (j > low) {
-            quicksort(low, j, array);
+        if (currentHigh > low) {
+            quicksort(low, currentHigh, array);
         }
 
-        if (i < high) {
-            quicksort(i, high, array);
+        if (currentlLow < high) {
+            quicksort(currentlLow, high, array);
         }
     }
 }
