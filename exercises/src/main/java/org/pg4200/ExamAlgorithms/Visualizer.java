@@ -2,18 +2,18 @@ package org.pg4200.ExamAlgorithms;
 
 import org.pg4200.les04.sort.MergeSort;
 import org.pg4200.les04.sort.QuickSort;
+import org.pg4200.les05.MyMapBinarySearchTree;
+import org.pg4200.les06.hash.MyHashMapWithLists;
 
 import java.util.Arrays;
 
 public class Visualizer {
 
     public static void main(String[] args) {
-        MinQuickSort quickSort = new MinQuickSort();
-        Integer[] array = {0, 1, 2};
+        MyHashMapWithLists map = new MyHashMapWithLists();
 
-        quickSort.sort(array);
+        map.put("Hallo", 32);
 
-        System.out.println(Arrays.deepToString(array));
 
     }
 

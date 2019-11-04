@@ -37,12 +37,19 @@ public class MyHashMapWithLists<K,V> implements MyHashMap<K,V> {
 
         int i = index(key);
 
+        System.out.println(i);
+
         if(data[i] == null){
+            //Creates empty arrayList to contain Entry
             data[i] = new ArrayList<>();
         }
 
+
+        //creates entry in arraylist to data
         List<Entry> list = data[i];
 
+
+        //Traverses through list to check if key is already present
         for(int j=0; j<list.size(); j++){
             Entry entry = list.get(j);
             if(key.equals(entry.key)){
@@ -104,6 +111,7 @@ public class MyHashMapWithLists<K,V> implements MyHashMap<K,V> {
            return;
         }
 
+        //Don't need to create ArrayList, as we are deleting the current element
         List<Entry> list = data[i];
 
         for(int j=0; j<list.size(); j++){
