@@ -163,17 +163,19 @@ public class MyLinkedList<T> implements MyList<T> {
             tail = node;
 
         } else {
-            //insertion in the middle of the list
+            //adds to "middle" of list
             int counter = index-1;
             ListNode previous = head;
 
+
+            //traverses the list until previous.next is pointing to index
             while(counter > 0){
                 previous = previous.next;
                 counter--;
             }
 
-            node.next = previous.next;
-            previous.next = node;
+            node.next = previous.next; //sets the link from the old node to the new, so as to not lose the linking
+            previous.next = node; //sets the new node in place of the old
             /*
                 We are in the case of
 

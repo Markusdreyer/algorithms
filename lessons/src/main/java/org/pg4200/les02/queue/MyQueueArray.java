@@ -78,9 +78,10 @@ public class MyQueueArray<T> implements MyQueue<T>{
 
                     Note: the choice of "5" is arbitrary...
                  */
+                //Empty slots available so we perform a left shift
                 int  size = size();
                 for(int i=0; i<size; i++){
-                    data[i] = data[i + head];
+                    data[i] = data[i + head]; //[i + head] because there might have been dequed elements, which would result in head != 0
                 }
                 head = 0;
                 tail = size;
@@ -88,9 +89,9 @@ public class MyQueueArray<T> implements MyQueue<T>{
                 //too many elements... let's just create a new array with double size
                 Object[] tmp = new Object[data.length * 2];
 
-                int  size = size();
+                int  size = size(); //so as to not call size() every iteration
                 for(int i=0; i<size; i++){
-                    tmp[i] = data[i + head];
+                    tmp[i] = data[i + head]; //[i + head] because there might have been dequed elements, which would result in head != 0
                 }
                 head = 0;
                 tail = size;
@@ -137,6 +138,6 @@ public class MyQueueArray<T> implements MyQueue<T>{
             return 0;
         }
 
-        return (tail - head ) + 1;
+        return (tail - head ) + 1; //+1 because arrays start at 0
     }
 }

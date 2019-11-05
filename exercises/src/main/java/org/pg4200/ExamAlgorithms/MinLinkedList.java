@@ -2,6 +2,11 @@ package org.pg4200.ExamAlgorithms;
 
 import org.pg4200.les02.list.MyList;
 
+/**
+ * {@link org.pg4200.les02.list.MyLinkedList}
+ */
+
+
 public class MinLinkedList<T> implements MyList<T> {
 
     private class ListNode{
@@ -80,30 +85,28 @@ public class MinLinkedList<T> implements MyList<T> {
         node.value = value;
 
         if(head == null) {
-            //adds to non-existing list
             head = node;
             tail = node;
         } else if(index == 0) {
-            //adds to beginning of list
+
             node.next = head;
             head = node;
         } else if (index == size) {
-            //adds to end of list
+
             tail.next = node;
             tail = node;
         } else {
-            //adds to "middle" of list
             int counter = index - 1;
             ListNode previous = head; //starts at head
 
-            //traverses the list until previous.next is pointing to index
+
             while(counter > 0) {
                 previous = previous.next;
                 counter--;
             }
 
-            node.next = previous.next; //sets the link from the old node to the new, so as to not lose the linking
-            previous.next = node; //sets the new node in place of the old
+            node.next = previous.next;
+            previous.next = node;
 
         }
         size++;

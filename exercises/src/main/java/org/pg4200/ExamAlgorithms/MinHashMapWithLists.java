@@ -4,6 +4,10 @@ import org.pg4200.les06.hash.MyHashMap;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * {@link org.pg4200.les06.hash.MyHashMapWithLists}
+ */
+
 public class MinHashMapWithLists<K,V> implements MyHashMap<K, V> {
 
     private final int M = 10_000_000; //997

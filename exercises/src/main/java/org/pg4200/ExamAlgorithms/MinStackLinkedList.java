@@ -2,6 +2,11 @@ package org.pg4200.ExamAlgorithms;
 
 import org.pg4200.les02.stack.MyStack;
 
+/**
+ * {@link org.pg4200.les02.stack.MyStackLinkedList}
+ */
+
+
 public class MinStackLinkedList<T> implements MyStack<T> {
 
     private class StackNode {
