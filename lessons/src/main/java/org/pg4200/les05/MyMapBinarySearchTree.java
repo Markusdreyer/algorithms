@@ -152,6 +152,7 @@ public class MyMapBinarySearchTree<K extends Comparable<K>, V> implements MyMapT
         if (subtreeRoot.left == null) {
             return subtreeRoot;
         }
+
         return min(subtreeRoot.left);
     }
 
@@ -220,7 +221,7 @@ public class MyMapBinarySearchTree<K extends Comparable<K>, V> implements MyMapT
             rightDepth = depth(node.right);
         }
 
-        return 1 + Math.max(leftDepth, rightDepth);
+        return 1 + Math.max(leftDepth, rightDepth); //sums together all values and returns greatest value when popping from stack
     }
 
 }
