@@ -1,31 +1,16 @@
-package org.pg4200.les07.stream;
+package org.pg4200.ExamAlgorithms.Streams;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-/**
- * Think about "streams" like enhanced iterators over a collection.
- * <p>
- * On a stream, we can apply transformation that can alter the data
- * in the stream, and how we retrieve such data.
- * This is achieved by pipelining different stream together.
- * <p>
- * A stream will be closed by a terminal operation, which will
- * specify what to do with the values coming from the stream.
- *
- * Note: here we are only having a few examples of methods available
- * for streams. The collections in the JDK API have many more.
- *
- * Created by arcuri82 on 03-Oct-17.
- */
-public interface MyStream<T> {
+public interface MinStream<T> {
 
     /**
      * Pipeline current stream into a new stream where elements are skipped
      * if they do not satisfy the given predicate
      */
-    MyStream<T> filter(Predicate<T> predicate);
+    MinStream<T> filter(Predicate<T> predicate);
 
     /**
      * Pipeline current stream into a new stream where the input values of
@@ -34,7 +19,7 @@ public interface MyStream<T> {
      *
      * Note: the term "map" here is NOT related to the Map collection type.
      */
-    <R> MyStream<R> map(Function<T, R> mapper);
+    <R> MinStream<R> map(Function<T, R> mapper);
 
     /**
      *  Pipeline current stream into a new stream where, for each input x
@@ -47,7 +32,7 @@ public interface MyStream<T> {
      *  Note: this is a bit tricky to grasp at first. Easier to understand
      *  it with some working examples.
      */
-    <R> MyStream<R> flatMap(Function<T, MyStream<R>> mapper);
+    <R> MinStream<R> flatMap(Function<T, MinStream<R>> mapper);
 
     /*
         Terminal Operations are what start the stream and retrieve
@@ -64,5 +49,5 @@ public interface MyStream<T> {
      *  into this list.
      * @return
      */
-    MyStreamCollectionList collectToList();
+    MinStreamCollectionList collectToList();
 }
