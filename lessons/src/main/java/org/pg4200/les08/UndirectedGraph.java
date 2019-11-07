@@ -34,13 +34,30 @@ public class UndirectedGraph<V> implements  Graph<V>{
         Objects.requireNonNull(from);
         Objects.requireNonNull(to);
 
+        //Add the vertices themselves
         addVertex(from);
         addVertex(to);
 
+        /*
+            Add the link from one edge to another
+            v1 = addVertex("a")
+            v2 = addVertex("b")
+
+            v1 = [a|b]
+            v2 = [b| ]
+        */
+
         graph.get(from).add(to);
 
+        //ie, if not a self-loop
         if(! from.equals(to)) {
-            //ie, if not a self-loop
+            /*
+                Add the second link
+                v1 = [a|b]
+                v2 = [b|a]
+
+             */
+
             graph.get(to).add(from);
         }
     }
