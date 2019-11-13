@@ -54,17 +54,17 @@ public class MergeSort implements MySort {
         //index over the right half, after middle
         int afterMiddle = middle + 1;
 
-        for (int k = low; k <= high; k++) {
+        for (int j = low; j <= high; j++) {
             if (beforeMiddle > middle) {
                 //done with left half, just copy over the right
-                array[k] = buffer[afterMiddle++];
+                array[j] = buffer[afterMiddle++];
             } else if (afterMiddle > high) {
                 //done with right half, just copy over the left
-                array[k] = buffer[beforeMiddle++];
+                array[j] = buffer[beforeMiddle++];
             } else if (buffer[afterMiddle].compareTo(buffer[beforeMiddle]) < 0) {
-                array[k] = buffer[afterMiddle++];
+                array[j] = buffer[afterMiddle++];
             } else {
-                array[k] = buffer[beforeMiddle++];
+                array[j] = buffer[beforeMiddle++];
             }
         }
     }

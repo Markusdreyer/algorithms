@@ -59,7 +59,14 @@ public class MyLinkedList<T> implements MyList<T> {
                 current = current.next;
                 counter++;
             }
-            //at this point, "current" point to the node BEFORE the one we want to delete
+            /*
+                after that while-loop, the "current" variable does point to the node BEFORE the one we want to
+                delete, as the loop has condition "counter != index - 1".
+                Assume for example you want to delete the element at position index=4.
+                The element before it is index=3. So, the "current" variable will point the element
+                which is at position 3, and not 4. I.e., "current == list.get(3)".
+                To delete an element, we need to remove/modify the "next" link from the previous node in the list
+             */
 
             if(current.next == tail){
                 //we are trying to delete the tail, so we need to update it
@@ -70,14 +77,10 @@ public class MyLinkedList<T> implements MyList<T> {
 
             /*
                 The line above could look strange...
-
                 A -> B -> C
-
                 here we want to remove B, where "current=A",
                 and so we want to end up with
-
                 A -> C
-
                 B is the next of A, where C is the next of B.
                 The next of B is also the "next next" of A.
              */
@@ -163,28 +166,22 @@ public class MyLinkedList<T> implements MyList<T> {
             tail = node;
 
         } else {
-            //adds to "middle" of list
-            int counter = index-1;
+            //insertion in the middle of the list
+            int counter = 0;
             ListNode previous = head;
 
-
-            //traverses the list until previous.next is pointing to index
-            while(counter > 0){
+            while(counter != index - 1){
                 previous = previous.next;
-                counter--;
+                counter++;
             }
 
-            node.next = previous.next; //sets the link from the old node to the new, so as to not lose the linking
-            previous.next = node; //sets the new node in place of the old
+            node.next = previous.next;
+            previous.next = node;
             /*
                 We are in the case of
-
                 ... -> A -> B -> ...
-
                 and we want to insert X at the position of B, resulting in
-
                 ... -> A -> X -> B -> ...
-
                 this means that A.next will have to point to X,
                 whereas X.next would be B. We do not need to modify B.
                 As we need to iterate from the head, we stop at A, as we need

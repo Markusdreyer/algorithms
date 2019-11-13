@@ -11,11 +11,11 @@ public class ComputationExampleStream implements ComputationExample {
     @Override
     public List<String> compute(List<Book> books) {
         return books.stream()
-                .filter(book -> book.getYear() >= 2010 && book.getYear() <= 2015)
-                .filter(book -> book.getAuthors().size() >= 2)
-                .flatMap(book -> book.getAuthors().stream())
-                .filter(author -> author.getName() != null && author.getSurname() != null)
-                .map(author -> author.getName() + " " + author.getSurname())
+                .filter(b -> b.getYear() >= 2010 && b.getYear() <= 2015)
+                .filter(b -> b.getAuthors().size() >= 2)
+                .flatMap(b -> b.getAuthors().stream()
+                        .filter(a -> a.getName() != null && a.getSurname() != null)
+                .map(a -> a.getName() + " " + a.getSurname()))
                 .distinct()
                 .collect(Collectors.toList());
     }

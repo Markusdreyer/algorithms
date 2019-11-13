@@ -37,8 +37,6 @@ public class MyHashMapWithLists<K,V> implements MyHashMap<K,V> {
 
         int i = index(key);
 
-        System.out.println(i);
-
         if(data[i] == null){
             //Creates empty arrayList to contain Entry
             data[i] = new ArrayList<>();

@@ -7,90 +7,43 @@ import java.util.stream.Collectors;
 
 public class MinUndirectedGraph<V> implements Graph<V> {
 
-    protected Map<V,Set<V>> graph = new HashMap<>();
-
     @Override
     public void addVertex(V vertex) {
-        Objects.requireNonNull(vertex);
 
-        graph.putIfAbsent(vertex, new HashSet<>());
     }
 
     @Override
     public void addEdge(V from, V to) {
-        Objects.requireNonNull(from);
-        Objects.requireNonNull(to);
-
-        addVertex(from);
-        addVertex(to);
-
-        graph.get(from).add(to);
-
-        if(!from.equals(to)) {
-            graph.get(to).add(from);
-        }
 
     }
 
     @Override
     public int getNumberOfVertices() {
-        return graph.size();
+        return 0;
     }
 
     @Override
     public int getNumberOfEdges() {
-        long edges = graph.values().stream()
-                .mapToInt(e -> e.size())
-                .sum();
-
-        edges += graph.entrySet().stream()
-                .filter(e -> e.getValue().contains(e.getKey()))
-                .count();
-
-        return (int) edges / 2;
+        return 0;
     }
 
     @Override
     public void removeEdge(V from, V to) {
-        Objects.requireNonNull(from);
-        Objects.requireNonNull(to);
-
-        Set<V> connectedFrom = graph.get(from);
-        Set<V> connectedTo = graph.get(to);
-
-        if(connectedFrom != null) {
-            connectedFrom.remove(to);
-        }
-
-        if(connectedTo != null) {
-            connectedTo.remove(from);
-        }
 
     }
 
     @Override
     public void removeVertex(V vertex) {
-        Objects.requireNonNull(vertex);
 
-        if(! graph.containsKey(vertex)) {
-            return;
-        }
-
-        graph.get(vertex).forEach(v -> graph.get(v).remove(v));
-
-        graph.remove(vertex);
     }
 
     @Override
     public Collection<V> getAdjacents(V vertex) {
-        Objects.requireNonNull(vertex);
-        return graph.get(vertex);
+        return null;
     }
 
     @Override
     public List<V> findPathDFS(V start, V end) {
-
-
         return null;
     }
 

@@ -81,7 +81,7 @@ public class MyQueueArray<T> implements MyQueue<T>{
                 //Empty slots available so we perform a left shift
                 int  size = size();
                 for(int i=0; i<size; i++){
-                    data[i] = data[i + head]; //[i + head] because there might have been dequed elements, which would result in head != 0
+                    data[i] = data[i + head]; //[i + head] because there might have been dequeued elements, which would result in head != 0
                 }
                 head = 0;
                 tail = size;
@@ -91,7 +91,7 @@ public class MyQueueArray<T> implements MyQueue<T>{
 
                 int  size = size(); //so as to not call size() every iteration
                 for(int i=0; i<size; i++){
-                    tmp[i] = data[i + head]; //[i + head] because there might have been dequed elements, which would result in head != 0
+                    tmp[i] = data[i + head]; //[i + head] because there might have been dequeued elements, which would result in head != 0
                 }
                 head = 0;
                 tail = size;
